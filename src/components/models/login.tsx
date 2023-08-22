@@ -1,6 +1,18 @@
+"use client"
+
+import {useSetRecoilState} from "recoil";
+import {authModelStateRecoil} from "@/Atom/authModelAtom";
+import authModel from "@/components/models/authModel";
+
 const Login = () => {
+    const authModel = useSetRecoilState(authModelStateRecoil)
+
+    const handleClick = (type: "register" | "login" | "forgotPassword") => {
+        authModel((prev) => ({...prev, type: type}))
+    }
+
     return <form action="" className="space-y-6 px-6 pb-4">
-        <h3 className="text-xl font-medium text-white"> SignIn into LeetCode</h3>
+        <h3 className="text-xl font-medium text-white"> Log In into LeetCode-cl</h3>
 
         {/*// Email sign*/}
         <div>
@@ -20,13 +32,15 @@ bg-gray-600 border-gray-500 placeholder-gray-400 Itext-white"
                    placeholder="********"/>
         </div>
 
+        {/*login*/}
         <button type="submit" className="w-full text-white focus:ring-blue-300 font-medium rounded-lg
-        text-sm px-5 py-2-5 text-center bg-brand-orange hover bg-brand-orange-s
+        text-sm p-3 py-2-5 text-center bg-brand-orange hover bg-brand-orange-s
         ">
             Login
         </button>
 
-        <button className="flex w-full justify-end">
+        {/*Forgot password*/}
+        <button className="flex w-full justify-end" onClick={() => handleClick("forgotPassword")}>
             <a href="#" className="text-sm block text-brand-orange hover:underline w-full text-right">
                 Forgot Password
             </a>
@@ -34,7 +48,7 @@ bg-gray-600 border-gray-500 placeholder-gray-400 Itext-white"
 
         <div className="text-sm font-medium text-grey-300">
             Not Registered?{" "}
-            <a href="#" className="text-blue-700 hover:underline">
+            <a href="#" className="text-blue-700 hover:underline" onClick={() => handleClick("register")}>
                 Create account
             </a>
         </div>
@@ -42,3 +56,7 @@ bg-gray-600 border-gray-500 placeholder-gray-400 Itext-white"
 };
 
 export default Login;
+
+const hello = () => {
+
+}

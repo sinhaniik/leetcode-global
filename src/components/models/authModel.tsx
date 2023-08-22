@@ -1,13 +1,22 @@
+"use client"
+
 import {IoClose} from "react-icons/io5";
 import Login from "@/components/models/login";
 import {SignUp} from "@/components/models/signUp";
 import ResetPassword from "@/components/models/resetPassword";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import {authModelStateRecoil} from "@/Atom/authModelAtom";
 
 const AuthModel = () => {
+	const authModal = useRecoilValue(authModelStateRecoil);
+	const auth = useSetRecoilState(authModelStateRecoil)
+	const handleClose = () => {
+		auth((prev) => ({...prev, isOpen: false}));
+	}
+
 	return (
 		<>
 			<div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60"
-				// onClick={closeModal}
 			></div>
 			<div
 				className="w-full sm:w-[450px]  absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]  flex justify-center items-center">
@@ -18,13 +27,13 @@ const AuthModel = () => {
 							<button
 								type="button"
 								className="bg-transparent  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white text-white"
-								// onClick={closeModal}
+								onClick={handleClose}
 							>
 								<IoClose className="h-5 w-5"/>
 							</button>
 						</div>
-						<ResetPassword/>
-						{/*{authModal.type === "login" ? <Login /> : authModal.type === "register" ? <Signup /> : <ResetPassword />}*/}
+						{authModal.type === "login" ? <Login/> : authModal.type === "register" ? <SignUp/> :
+							<ResetPassword/>}
 					</div>
 				</div>
 			</div>

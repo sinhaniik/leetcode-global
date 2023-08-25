@@ -2,16 +2,48 @@
 
 import {useSetRecoilState} from "recoil";
 import {authModelStateRecoil} from "@/Atom/authModelAtom";
-import authModel from "@/components/models/authModel";
+import {auth} from "@/firebase/firebase";
+import {useSignInWithEmailAndPassword} from "react-firebase-hooks/auth";
+import React, {useState} from "react";
+import {handleClientScriptLoad} from "next/script";
+import {useRouter} from "next/navigation";
 
 const Login = () => {
     const authModel = useSetRecoilState(authModelStateRecoil)
+
+    const [input, setInput] = useState({email: "", password: ""});
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const router = useRouter()
 
     const handleClick = (type: "register" | "login" | "forgotPassword") => {
         authModel((prev) => ({...prev, type: type}))
     }
 
-    return <form action="" className="space-y-6 px-6 pb-4">
+    const handleChangeClick = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setInput((prev) => ({...prev, [e.target.name]: e.target.value}));
+    }
+
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!input.email || !input.password) return alert("cannot left an input field empty")
+
+        try {
+            const newUser = await signInWithEmailAndPassword(input.email, input.password)
+            if (!newUser) return
+            router.push("/")
+        } catch (error: any) {
+            alert(error.message)
+        }
+    };
+
+    return <form action="" className="space-y-6 px-6 pb-4" onSubmit={handleSubmit}>
         <h3 className="text-xl font-medium text-white"> Log In into LeetCode-cl</h3>
 
         {/*// Email sign*/}
@@ -19,7 +51,7 @@ const Login = () => {
             <label htmlFor="email" className="text-sm font-medium block mb-2 text-grey-300"> Your Email </label>
             <input id="email" type="email" name="email" className="border-2 outline-none sm:text-sm rounded-1g focus:ring-blue-500 focus: border-blue-500 block w-full p-2.5
 bg-gray-600 border-gray-500 placeholder-gray-400 Itext-white"
-                   placeholder="nikhil@gmail.com"/>
+                   placeholder="nikhil@gmail.com" onChange={handleChangeClick} />
         </div>
 
         {/*// Password*/}
@@ -29,14 +61,14 @@ bg-gray-600 border-gray-500 placeholder-gray-400 Itext-white"
             </label>
             <input id="password" type="password" name="password" className="border-2 outline-none sm:text-sm rounded-1g focus:ring-blue-500 focus: border-blue-500 block w-full p-2.5
             bg-gray-600 border-gray-500 placeholder-gray-400 Itext-white"
-                   placeholder="********"/>
+                   placeholder="********"  onChange={handleChangeClick} />
         </div>
 
         {/*login*/}
         <button type="submit" className="w-full text-white focus:ring-blue-300 font-medium rounded-lg
         text-sm p-3 py-2-5 text-center bg-brand-orange hover bg-brand-orange-s
         ">
-            Login
+            {loading? "logging in...": "login"}
         </button>
 
         {/*Forgot password*/}
@@ -56,7 +88,3 @@ bg-gray-600 border-gray-500 placeholder-gray-400 Itext-white"
 };
 
 export default Login;
-
-const hello = () => {
-
-}

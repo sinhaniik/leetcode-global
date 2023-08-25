@@ -1,9 +1,6 @@
-"use Client"
-
 import Link from "next/link";
 import {useSetRecoilState} from "recoil";
 import {authModelStateRecoil} from "@/Atom/authModelAtom";
-
 const Navbar = () => {
     const setAuth = useSetRecoilState(authModelStateRecoil)
     const handleClick = () => {

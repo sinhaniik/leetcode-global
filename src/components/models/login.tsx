@@ -5,7 +5,6 @@ import {authModelStateRecoil} from "@/Atom/authModelAtom";
 import {auth} from "@/firebase/firebase";
 import {useSignInWithEmailAndPassword} from "react-firebase-hooks/auth";
 import React, {useState} from "react";
-import {handleClientScriptLoad} from "next/script";
 import {useRouter} from "next/navigation";
 
 const Login = () => {

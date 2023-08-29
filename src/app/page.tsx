@@ -1,5 +1,6 @@
-import Image from 'next/image'
+
 import Topbar from "@/components/Topbar/topbar";
+import ProblemTable from "@/components/problemTable/problemTable";
 
 export default function Home() {
     return (
@@ -7,7 +8,6 @@ export default function Home() {
             <main className="bg-dark-layer-2 min-h-screen">
                 <Topbar/>
 
-                {/*questions */}
                 <h1
                     className="text-2xl text-center text-gray-700 dark:text-gray-400 font-medium uppercase mt-10 mb-5">
                     &ldquo; QUALITY OVER QUANTITY &rdquo; 👇
@@ -36,6 +36,7 @@ export default function Home() {
                             </th>
                         </tr>
                         </thead>
+                        <ProblemTable/>
                     </table>
                 </div>
             </main>

@@ -1,11 +1,36 @@
 "use client"
+import React, {useEffect, useState} from "react";
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import {auth} from "@/firebase/firebase"
 
-import React from "react";
-type ResetPasswordProps = {};
 
 const ResetPassword = () => {
+	const [email, setEmail] = useState('');
+	const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(
+		auth
+	);
+
+	const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		const success = await sendPasswordResetEmail(email);
+		if (success) {
+			alert('Sent email');
+		}
+	};
+
+	useEffect(() => {
+		if (error) {
+			alert(error.message)
+		}
+	}, [error]);
+
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault()
+		setEmail(e.target.value)
+	};
+
 	return (
-		<form className="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8">
+		<form className="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" onSubmit={handleSubmit}>
 			<h3 className="text-xl font-medium  text-white">Reset Password</h3>
 			<p className="text-sm text-white ">
 				Forgotten your password? Enter your e-mail address below, and we&apos;ll send you an e-mail allowing you
@@ -16,6 +41,7 @@ const ResetPassword = () => {
 					Your email
 				</label>
 				<input
+					onChange={handleInput}
 					type="email"
 					name="email"
 					id="email"

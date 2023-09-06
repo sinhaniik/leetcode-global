@@ -4,9 +4,10 @@ import React from 'react';
 import Link from "next/link";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/firebase/firebase";
+import Logout from "@/components/button/logout";
 
 const Topbar = () => {
-	const [user] = useAuthState(auth)
+		const [user] = useAuthState(auth)
 
 	return (
 		<nav className="relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7">
@@ -42,9 +43,12 @@ const Topbar = () => {
 						</div>
 					)}
 				</div>
+				{user && (
+					<Logout/>
+				)}
 			</div>
 		</nav>
-	)
+	);
 };
 
 export default Topbar

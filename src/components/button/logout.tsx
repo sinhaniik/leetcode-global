@@ -5,20 +5,18 @@ import {authModelStateRecoil} from "@/Atom/authModelAtom";
 import {useSignOut} from "react-firebase-hooks/auth";
 import {auth} from "@/firebase/firebase";
 
-
 const Logout = () => {
+    const [signOut, loading, error] = useSignOut(auth);
 
-      const [signOut, loading, error] = useSignOut(auth);
-
-
-     const authModel = useSetRecoilState(authModelStateRecoil)
+    const authModel = useSetRecoilState(authModelStateRecoil)
     const handleLogOut = () => {
         signOut();
     }
 
     return (
-        <button className="bg-dark-fill-3 ml-1.5 py-1.5 px-3 cursor-pointer rounded text-brand-orange" onClick={handleLogOut}  >
-            <FiLogOut />
+        <button className="bg-dark-fill-3 ml-1.5 py-1.5 px-3 cursor-pointer rounded text-brand-orange"
+                onClick={handleLogOut}>
+            <FiLogOut/>
         </button>
     );
 };

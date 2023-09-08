@@ -18,11 +18,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-      <RecoilRoot>
-        <html lang="en">
-        <body className={inter.className}>{children}</body>
-        </html>
-      </RecoilRoot>
-  );
+    return (
+        <RecoilRoot>
+            <html lang="en">
+            <body className={inter.className}>{children}</body>
+            </html>
+        </RecoilRoot>
+    );
 }

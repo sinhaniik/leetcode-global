@@ -5,6 +5,7 @@ import Link from "next/link";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/firebase/firebase";
 import Logout from "@/components/button/logout";
+import Image from "next/image";
 
 const Topbar = () => {
 		const [user] = useAuthState(auth)
@@ -13,7 +14,7 @@ const Topbar = () => {
 		<nav className="relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7">
 			<div className={`flex w-full items-center justify-between max-w-[1200px] mx-auto`}>
 				<Link href="/" className="h-[22px] flex-1">
-					<img src="/logo-full.png" alt="Logo" className="h-full"/>
+					<Image src="/logo-full.png" alt="Logo" height={200} width={100} />
 				</Link>
 
 				<div className="flex items-center space-x-4 flex-1 justify-end">
@@ -34,7 +35,7 @@ const Topbar = () => {
 					)}
 					{user && (
 						<div className="cursor-pointer group relative">
-							<img src="/avatar.png" alt="user avatar" className="h-8 w-8 rounded-full"/>
+							<Image src="/avatar.png" alt="user avatar" height={200} width={200}/>
 
 							<div className="absolute top-8 left-2/4 -translate-x-3/4 mx-auto bg-dark-layer-1 text-brand-orange p-2 rounded shadow-lg z-40
 							group-hover:scale-100 scale-0 transition-all duration-300 ease-in-out">

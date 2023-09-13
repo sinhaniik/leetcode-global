@@ -7,7 +7,7 @@ import ProblemStatement from "@/components/problemStatement/problemStatement";
 type Props = {};
 const Workspace = (props: Props) => {
     return (
-        <Split className="split">
+        <Split className="split" minSize={0}>
             <ProblemStatement/>
             <div>editor</div>
         </Split>

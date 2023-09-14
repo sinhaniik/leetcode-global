@@ -40,7 +40,7 @@ const PlayGround = (props: Props) => {
                         <div className="mr-2 items-start mt-2 text-white">
                             <div className="flex flex-wrap items-center gap-y-4">
                                 <div className="font-medium items-center transition-all focus:outline-none inline-flex bg-dark-fill-3
-                                hover:bg-dark-fill-2 relative rounded-lg px-4 py-1 cursor-pointer whitespace-nowrap">
+                                hover:bg-dark-fill-2 relative rounded-lg px-2 py-1 cursor-pointer whitespace-nowrap">
                                     Case 1
                                 </div>
                             </div>
@@ -48,7 +48,7 @@ const PlayGround = (props: Props) => {
                         <div className="mr-2 items-start mt-2 text-white">
                             <div className="flex flex-wrap items-center gap-y-4">
                                 <div className="font-medium items-center transition-all focus:outline-none inline-flex bg-dark-fill-3
-                                hover:bg-dark-fill-2 relative rounded-lg px-4 py-1 cursor-pointer whitespace-nowrap">
+                                hover:bg-dark-fill-2 relative rounded-lg px-2 py-1 cursor-pointer whitespace-nowrap">
                                     Case 2
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ const PlayGround = (props: Props) => {
                         <div className="mr-2 items-start mt-2 text-white">
                             <div className="flex flex-wrap items-center gap-y-4">
                                 <div className="font-medium items-center transition-all focus:outline-none inline-flex bg-dark-fill-3
-                                hover:bg-dark-fill-2 relative rounded-lg px-4 py-1 cursor-pointer whitespace-nowrap">
+                                hover:bg-dark-fill-2 relative rounded-lg px-2 py-1 cursor-pointer whitespace-nowrap">
                                     Case 3
                                 </div>
                             </div>
@@ -65,12 +65,12 @@ const PlayGround = (props: Props) => {
 
                     <div className="font-semibold my-5">
                         <p className="text-sm font-medium mt-4 text-white">Input: </p>
-                        <div className="w-full cursor-text rounded-lg border px-3 py-[10px]
+                        <div className="w-full cursor-text rounded-lg border px-2 py-[10px]
                         bg-dark-fill-3 border-transparent text-white mt-2 ">
                             nums : [2,7,11,15] , target: 9
                         </div>
                         <p className="text-sm font-medium mt-4 text-white">Input: </p>
-                        <div className="w-full cursor-text rounded-lg border px-3 py-[10px]
+                        <div className="w-full cursor-text rounded-lg border px-2 py-[10px]
                         bg-dark-fill-3 border-transparent text-white mt-2 ">
                             [0,1]
                         </div>
